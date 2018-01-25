@@ -1,0 +1,54 @@
+function drawAPoint(X, Y, result, myGraph) {
+    if (result == true) {
+        myGraph.drawPoint(X, Y, 'green');
+    }
+    else {
+        myGraph.drawPoint(X, Y, 'red');
+    }
+}
+function draw(R, myGraph) {
+    myGraph.context.clearRect(0, 0, myGraph.canvas.width, myGraph.canvas.height);
+    myGraph.drawXAxis();
+    myGraph.drawYAxis();
+    myGraph.drawEquationX(function (x) {
+        const y = Number(x) + Number(x) - Number(R);
+        if (x < 0 || x > R/2)
+            return null;
+        return y;
+    }, 'blue', 3);
+
+    myGraph.drawEquationX(function (x) {
+        const y = Math.sqrt(R * R / 4 - x * x);
+        if (x > 0 || isNaN(y) || y < 0)
+            return null;
+        return y;
+    }, 'blue', 3);
+
+    myGraph.drawEquationX(function (x) {
+        const y = -R;
+        if (x > 0 || x < -R/2)
+            return null;
+        return y;
+    }, 'blue', 3);
+
+    myGraph.drawEquationX(function (x) {
+        const y = 0;
+        if (x > R/2 || x < -R/2)
+            return null;
+        return y;
+    }, 'blue', 3);
+
+    myGraph.drawEquationY(function (y) {
+        const x = -R/2;
+        if (y > 0 || y < -R)
+            return null;
+        return x;
+    }, 'blue', 3);
+
+    myGraph.drawEquationY(function (y) {
+        const x = 0;
+        if (y > R/2 || y < -R)
+            return null;
+        return x;
+    }, 'blue', 3);
+}

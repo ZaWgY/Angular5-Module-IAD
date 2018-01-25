@@ -1,0 +1,107 @@
+<table>
+  <tr>
+    <td>
+      <div style="margin-left: 40%; margin-top: 10%" >
+        <ngvas [width]="500" [height]="500" (ready)="tweenComplete()" [hitArea]="pixelHitArea" (onClick)="onClick()">
+          <!--Прямоугольник-->
+          <ngvas-line [stroke]="{ width: 0 }" [fill]="fill" [lines]="[ [[250, 250], [250-r, 250]],
+            [[250-r, 250],[250-r, 250+r/2]], [[(250-r), 250+r/2],[250,250+r/2]], [[250,250+r/2],[250,250]]]"></ngvas-line>
+          <!--Четверть круга-->
+          <ngvas-arc [fill]="fill" [x]="250" [y]="250" [radius]="r" [angle]="90" [rotate]="rotateCircle()" origin="center" [connectToCenter]="true"></ngvas-arc>
+          <!--Треугольник-->
+          <ngvas-line [stroke]="{ width: 0 }" [fill]="fill" [lines]="[ [[250, 250], [250-r, 250]],
+            [[250-r, 250],[250, 250-r/2]], [[250, 250-r/2],[250,250]]]"></ngvas-line>
+          <!--Координатные оси-->
+          <ngvas-line [stroke]="{ width: 1 }" [lines]="[ [[0, 250], [500, 250]]]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 1 }" [lines]="[ [[250, 0], [250, 500]] ]"></ngvas-line>
+          <!--Риски-->
+          <ngvas-line [stroke]="{ width: 4 }" [lines]="[ [[0, 254], [0, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[50, 254], [50, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[100, 254], [100, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[150, 254], [150, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[200, 254], [200, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[250, 254], [250, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[300, 254], [300, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[350, 254], [350, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[400, 254], [400, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[450, 254], [450, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 4 }" [lines]="[ [[500, 254], [500, 246]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 4 }" [lines]="[ [[254, 0], [246, 0]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[254, 50], [246, 50]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[254, 100], [246, 100]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[254, 150], [246, 150]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[254, 200], [246, 200]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[254, 250], [246, 250]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[254, 300], [246, 300]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[254, 350], [246, 350]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[254, 400], [246, 400]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 2 }" [lines]="[ [[254, 450], [246, 450]] ]"></ngvas-line>
+          <ngvas-line [stroke]="{ width: 4 }" [lines]="[ [[254, 500], [246, 500]] ]"></ngvas-line>
+          <!--Подписи-->
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="490" [y]="245" text="5"></ngvas-text>
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="255" [y]="10" text="5"></ngvas-text>
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="440" [y]="245" text="4"></ngvas-text>
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="255" [y]="60" text="4"></ngvas-text>
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="390" [y]="245" text="3"></ngvas-text>
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="255" [y]="110" text="3"></ngvas-text>
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="340" [y]="245" text="2"></ngvas-text>
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="255" [y]="160" text="2"></ngvas-text>
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="255" [y]="210" text="1"></ngvas-text>
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="290" [y]="245" text="1"></ngvas-text>
+          <ngvas-text fill="#000000" [textStyle]="{ font: '12px Arial' }" [x]="255" [y]="245" text="0"></ngvas-text>
+          <!--<ngvas-circle [stroke]="stroke" [translate]="xy" [radius]="r" origin="center"></ngvas-circle>-->
+          <!--<ngvas-rectangle [fill]="squareFill" [translate]="squareTranslate" [size]="[r, r/2]" [origin]="center" translate="xy" [hitArea]="pixelHitArea"-->
+          <!--(click)="onClick($event)" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)"></ngvas-rectangle>-->
+        </ngvas>
+      </div>
+    </td>
+    <td >
+      <table style="margin-left: 10%; margin-top: 10%">
+        <tr >Выберите X:</tr>
+        <tr>
+          <td>
+            <mat-slider style="width: 100%; margin-top: 2%; margin-bottom: 15%" min="-3" max="5" step="0.5" value="0" [(ngModel)]="val1"></mat-slider>
+          </td>
+          <td>
+            <i> X = {{val1}}</i>
+          </td>
+        </tr>
+        <tr>Введите значение Y:</tr>
+        <tr>
+          <td>
+            <input pInputText id="inputY" style="margin-top: 2%; margin-bottom: 15%" type="number" value="0" [min]="-3" [max]="3"/>
+          </td>
+          <td>
+            <i id="inputError" style="visibility: hidden"> Неверно введено значение. Y задается от -3 до 3</i>
+          </td>
+        </tr>
+        <tr>Выберите R:</tr>
+        <tr>
+          <td>
+            <mat-slider style="width: 100%; margin-top: 2%; margin-bottom: 15%" min="-3" max="5" step="0.5" value="2" [(ngModel)]="val3"></mat-slider>
+          </td>
+          <td>
+            <i> R = {{val3}}</i>
+          </td>
+        </tr>
+        <tr>
+          <button pButton label="Проверить"></button>
+          <button pButton id="clearButton" style="visibility: hidden" label="Очистить таблицу"></button>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<div>
+
+</div>
+<table id="resultTable" style="border-collapse: collapse; visibility: hidden;
+    width: 400px; text-align: center; margin-top: 5%; margin-left: 5%">
+  <tr>
+    <td style=" padding: 10px; border: 1px solid black">X:</td>
+    <td style=" padding: 10px; border: 1px solid black">Y:</td>
+    <td style=" padding: 10px; border: 1px solid black">R:</td>
+    <td style=" padding: 10px; border: 1px solid black">Попадание:</td>
+  </tr>
+</table>
