@@ -9,22 +9,30 @@ import { AppRoutingModule } from './/app-routing.module';
 import { StartPageComponent } from './start-page/start-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import {RouterModule} from '@angular/router';
+import {HttpModule} from '@angular/http';
+import { PointsComponent } from './points/points.component';
+import {PointsService} from './points/points.service';
+import {HttpClientModule} from '@angular/common/http';
+import {StartPageService} from './start-page/start-page.service';
+import {FormsModule} from '@angular/forms';
 
 const routes = [
   {path: '', component: StartPageComponent},
-  {path: 'main', component: MainPageComponent}
+  {path: 'main', component: MainPageComponent},
+  {path: 'points', component: PointsComponent}
 ];
 @NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
-    MainPageComponent
+    MainPageComponent,
+    PointsComponent
   ],
   imports: [
     BrowserModule, MatSliderModule, ChartModule, InputTextModule, ButtonModule, PasswordModule, NgvasModule, AppRoutingModule,
-     RouterModule.forRoot(routes)
+     RouterModule.forRoot(routes), HttpClientModule , FormsModule
   ],
-  providers: [],
+  providers: [PointsService, StartPageService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

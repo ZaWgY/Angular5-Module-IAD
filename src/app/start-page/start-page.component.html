@@ -1,12 +1,18 @@
 <div style="text-align: center; width: 100%; margin-bottom: 0.5%">
 Логин:
-<input type="text" pInputText />
+<input type="text" pInputText [(ngModel)]="userName"/>
 </div>
 <div style="text-align: center; width: 100%; margin-bottom: 1%">
 Пароль:
-<input type="password" pPassword [feedback]="false"/>
+<input type="password" pPassword [feedback]="false" [(ngModel)]="userPassword">
 </div>
 <div style="text-align: center; width: 100%;">
-<button pButton style="width: 10%" type="button" label="Вход" class="ui-button-success"></button>
-<button pButton style="width: 10%" type="button" label="Регистрация" class="ui-button-success"></button>
+<button pButton (click)="auth()" style="width: 10%" type="button" label="Вход" class="ui-button-success"></button>
+<button pButton (click)="register()" style="width: 10%" type="button" label="Регистрация" class="ui-button-success"></button>
+</div>
+<!--<div *ngFor="let person of persons">-->
+  <!--{{person.nameous}}-->
+<!--</div>-->
+<div class="regErr">
+  {{ registrationError }}
 </div>

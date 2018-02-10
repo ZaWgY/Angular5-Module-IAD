@@ -1,0 +1,7 @@
+.regErr{
+  color: blue;
+  text-align: center;
+  font: 2em Arial;
+  text-shadow: black 1px 1px 0, black -1px -1px 0,
+  black -1px 1px 0, black 1px -1px 0;
+}
