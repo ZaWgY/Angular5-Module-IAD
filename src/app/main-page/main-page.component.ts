@@ -142,7 +142,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
       this.drawPoint(clientX, clientY, 'blue');
       this.point.xValue = x;
       this.point.yValue = y;
-
+      this.sendPoint();
     }
   }
 
@@ -173,13 +173,15 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     this.requestPoints2[0].r = this.point.rValue;
     this.requestPoints2[0].userId = this.usernameous;
     this.requestPoints2[0].hit = false;
-    console.log(this.point.xValue + ' ' + this.point.yValue + '' + this.point.rValue);
-    this.pointService.addPoint(this.requestPoints2[0]).subscribe( response => console.log(response));
-    this.getPoints();
+    console.log(this.point.xValue + ' ' + this.point.yValue + ' ' + this.point.rValue);
+    this.pointService.addPoint(this.requestPoints2[0]).subscribe( response => {
+      console.log(response);
+      this.getPoints(); });
   }
 
   clearPoints() {
-    this.pointService.clearPoints(this.usernameous).subscribe();
-    this.getPoints();
-  }
+    this.pointService.clearPoints(this.usernameous).subscribe( response => {
+      console.log(response);
+      this.getPoints(); });
+}
 }
