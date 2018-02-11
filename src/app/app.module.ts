@@ -15,10 +15,12 @@ import {PointsService} from './points/points.service';
 import {HttpClientModule} from '@angular/common/http';
 import {StartPageService} from './start-page/start-page.service';
 import {FormsModule} from '@angular/forms';
+import {UserService} from './user.service';
+import {AuthGuard} from './auth.guard';
 
 const routes = [
   {path: '', component: StartPageComponent},
-  {path: 'main', component: MainPageComponent},
+  {path: 'main', canActivate: [AuthGuard], component: MainPageComponent},
   {path: 'points', component: PointsComponent}
 ];
 @NgModule({
@@ -32,7 +34,7 @@ const routes = [
     BrowserModule, MatSliderModule, ChartModule, InputTextModule, ButtonModule, PasswordModule, NgvasModule, AppRoutingModule,
      RouterModule.forRoot(routes), HttpClientModule , FormsModule
   ],
-  providers: [PointsService, StartPageService],
+  providers: [PointsService, StartPageService, UserService, AuthGuard],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

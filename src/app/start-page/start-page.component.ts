@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Person, StartPageService} from './start-page.service';
+import {Router} from '@angular/router';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-start-page',
@@ -14,7 +16,7 @@ export class StartPageComponent implements OnInit {
   userName: '';
   userPassword: '';
   registrationError: string;
-  constructor(private startPageService: StartPageService) { }
+  constructor(private startPageService: StartPageService, private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.startPageService.getUsers().subscribe(
@@ -49,6 +51,7 @@ export class StartPageComponent implements OnInit {
     if (this.userPassword === '') { return; }
     this.persons2[0].nameous = this.userName;
     this.persons2[0].passwordious = this.userPassword;
+    this.userService.setUsername(this.userName);
     this.userName = '';
     this.userPassword = '';
 
@@ -62,6 +65,8 @@ export class StartPageComponent implements OnInit {
       }
       if (this.lastResponse === 'FOUND') {
         this.registrationError = 'Ну а тут всё четка';
+        this.userService.setIsUserLoggedIn(true);
+        this.router.navigate(['/main']);
       }
       console.log(this.lastResponse);
     });

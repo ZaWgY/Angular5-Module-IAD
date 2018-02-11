@@ -2,6 +2,9 @@ import { Component, OnInit, AfterViewInit  } from '@angular/core';
 import {hitAreas} from 'ngvas';
 import { ViewChild, ElementRef } from '@angular/core';
 import {Point} from './point-form.point.interface';
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
+import {PointsService, RequestPoints} from '../points/points.service';
 
 @Component({
   selector: 'app-main-page',
@@ -11,6 +14,9 @@ import {Point} from './point-form.point.interface';
 export class MainPageComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas') canvasRef: ElementRef;
   public point: Point;
+  public allPoints: Point[];
+  private requestPoints: RequestPoints[];
+  private requestPoints2: RequestPoints[];
   // public xValues = [
   //   { value: -3, display: '-3' },
   //   { value: -2, display: '-2' },
@@ -34,10 +40,12 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   //   { value: 4, display: '4' },
   //   { value: 5, display: '5' }
   // ];
-
+  private usernameous: string;
   private ctx: CanvasRenderingContext2D;
 
+  constructor(private userService: UserService, private router: Router, private pointService: PointsService) {}
   ngOnInit() {
+    this.usernameous = this.userService.getUsername();
     this.getPoints();
     this.point = {
       xValue: null,
@@ -147,7 +155,31 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   }
 
   getPoints(): void {
-    // this.pointService.getPoints()
-    //   .subscribe(points => this.points = points);
+    this.pointService.getUserPoints(this.usernameous)
+    .subscribe(points => {
+        this.requestPoints = points;
+        this.requestPoints2 = points;
+      }
+    );
+  }
+
+  quit() {
+    this.router.navigate(['/']);
+  }
+
+  sendPoint() {
+    this.requestPoints2[0].x = this.point.xValue;
+    this.requestPoints2[0].y = this.point.yValue;
+    this.requestPoints2[0].r = this.point.rValue;
+    this.requestPoints2[0].userId = this.usernameous;
+    this.requestPoints2[0].hit = false;
+    console.log(this.point.xValue + ' ' + this.point.yValue + '' + this.point.rValue);
+    this.pointService.addPoint(this.requestPoints2[0]).subscribe( response => console.log(response));
+    this.getPoints();
+  }
+
+  clearPoints() {
+    this.pointService.clearPoints(this.usernameous).subscribe();
+    this.getPoints();
   }
 }
